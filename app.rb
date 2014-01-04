@@ -151,7 +151,10 @@ get '/data_delete' do
 end
 
 get '/env' do
-  request.env.inspect
+ ips = "REMOTE_ADDR: #{request.env['REMOTE_ADDR']}<br/>" +
+       "HTTP_VIA: #{request.env['HTTP_VIA']<br/>" +
+       "HTTP_X_FORWARDED_FOR: #{request.env['HTTP_X_FORWARDED_FOR']<br/>"
+  headers = request.env.inspect
 end
 
 #run Sinatra::Application
