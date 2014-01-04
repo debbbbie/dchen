@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>管理界面-河北邸宸电子科技有限公司</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <script type="text/javascript" charset="utf-8" src="/ueditor1_2_5_1/editor_config.js"></script>
+  <!--使用版-->
+  <script type="text/javascript" charset="utf-8" src="/ueditor1_2_5_1/editor_all.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="/jquery-1.8.2.min.js"></script>
+
+  <style type="text/css">
+      .clear {
+          clear: both;
+      }
+  </style>
+</head>
+<body>
+<div>
+  ID：<input    type="hidden"  name="id"    id="id" value="<%= @ret['id'] %>"/><br/>
+  标题：<input  name="subject" id="subject" value="<%= @ret['subject'] %>" />
+  作者：<input  name="author"  id="author"  value="<%= @ret['author'] %>" />
+  类别：<select name="type"    id="type"><option value="xinwen">新闻动态</option><option value="anli">成功案例</option></select>
+  
+</div>
+<div>
+  <script  id="editor" type="text/plain">这里可以书写，编辑器的初始内容</script>
+</div>
+
+
+<div class="clear"></div>
+
+<div >
+  <input type="button" value="提交" id="btn_submit"/>
+</div>
+<div style="display:hidden;visibility:hidden" id="content_hidden"><%= @ret['content'] %></div>
+</body>
+<script type="text/javascript">
+    //实例化编辑器
+    var ue = UE.getEditor('editor');
+
+    ue.addListener('ready',function(){
+        var ht = document.getElementById('content_hidden').innerHTML;
+        if(ht){ ue.setContent(ht); }
+        this.focus()
+    });
+
+    function getAllHtml() {
+        return UE.getEditor('editor').getAllHtml();
+    }
+
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push( "使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容" );
+        UE.getEditor('editor').setContent( '欢迎使用ueditor',isAppendTo );
+        alert( arr.join( "\n" ) );
+    }
+
+    $(function(){
+        $("#btn_submit").click(function(){
+            var id      = $("#id"     ).val();
+            var subject = $("#subject").val();
+            var author  = $("#author" ).val();
+            var type    = $("#type"   ).val();
+            var content = getAllHtml();
+            $.post('/data_add',{
+                id      : id,
+                subject : subject,
+                author  : author ,
+                content : content,
+                type    : type
+            }, function(data){
+                alert(data);
+                console.log(data)
+                document.location.href = '/data_list';
+            });
+        });
+    });
+
+</script>
+</html>

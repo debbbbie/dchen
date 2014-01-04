@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!-- saved from url=(0042)http://www.bootcss.com/examples/fluid.html -->
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>成功案例-河北邸宸电子科技有限公司</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="河北邸宸电子科技有限公司,邸宸智能家居,邸宸科技,邸宸家具,邸宸官网,dchen,dichen,dchen.com.cn">
+  <meta name="author" content="debbbbie">
+  <!-- Le styles -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="yx_sub.css" rel="stylesheet">
+  <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]><script src="html5shiv.js"></script><![endif]-->
+  <link rel="shortcut icon" href="favicon.png">
+  <link href="yx.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container-fluid">
+      <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="brand" href="http://www.bootcss.com/examples/fluid.html#"></a>
+      <div class="nav-collapse collapse">
+        <ul class="nav">
+          <li><a href="/">主页</a></li>
+          <li><a href="/data_list">新闻动态</a></li>
+          <li class="active"><a href="/anli_list">成功案例</a></li>
+          <li><a href="yewujieshao.html">业务介绍</a></li>
+          <li><a href="video1.html">宣传视频</a></li>
+          <li><a href="about.html">关于我们</a></li>
+          <li><a href="contactus.html">联系我们</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+  </div>
+</div>
+<header class="jumbotron subhead" id="overview">
+  <div class="container">
+    <h1><img src="logo_cplx.png" style="width:350px; height:120px"/></h1>
+    <p class="lead"></p>
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2">
+    </div>
+    <div class="span9">
+      <div class="well sidebar-nav">
+        <ul class="nav nav-list">
+          <li class="nav-header"><p>
+            最新文章
+            <% if session[:admin] %>
+            <a href="/data_add">[添加]</a>
+            <% end%>
+          </p></li>
+          <!--<li>智能家居与未来生活</li>-->
+          <% @ret.each do|item| %>
+              <li><p>
+                <a href="/data_content?id=<%=item[:id]%>"><%=item[:subject] %></a>
+                <% if session[:admin] %>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="/data_add?id=<%= item[:id]%>">[编辑]</a>
+                    &nbsp;<a href="/data_delete?id=<%= item[:id]%>">[删除]</a>
+                <% end %>
+              </p></li>
+          <% end %>
+          <!--<li class="active"><a href="http://www.bootcss.com/examples/fluid.html#">智能家居与未来生活</a></li>-->
+          <li></li>
+        </ul>
+      </div><!--/.well -->
+    </div><!--/span-->
+    <div class="span1">
+    </div>
+  </div><!--/row-->
+
+  <hr>
+
+  <footer>
+    <p>© 2010-2013 河北邸宸电子科技有限公司 · <a href="about.htm">联系我们</a></p>
+    <p>备案号：冀ICP备13005394号-1</p>
+  </footer>
+
+</div><!--/.fluid-container-->
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+</body></html>
