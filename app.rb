@@ -150,4 +150,8 @@ get '/data_delete' do
 
 end
 
+get '/env' do
+  request.env.inspect
+end
+
 #run Sinatra::Application
